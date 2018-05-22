@@ -1,6 +1,6 @@
 package com.mp.privatewallet.account.repository;
 
-import com.mp.privatewallet.account.entity.Account;
+import com.mp.privatewallet.account.collections.Account;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

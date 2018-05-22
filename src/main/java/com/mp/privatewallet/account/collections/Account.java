@@ -1,4 +1,4 @@
-package com.mp.privatewallet.account.entity;
+package com.mp.privatewallet.account.collections;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

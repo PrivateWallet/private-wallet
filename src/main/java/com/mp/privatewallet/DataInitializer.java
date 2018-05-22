@@ -1,6 +1,6 @@
 package com.mp.privatewallet;
 
-import com.mp.privatewallet.account.entity.Account;
+import com.mp.privatewallet.account.collections.Account;
 import com.mp.privatewallet.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -33,8 +33,6 @@ public class DataInitializer {
         accountRepository.save(new Account("Włodek"));
         accountRepository.save(new Account("Jerzy"));
         accountRepository.save(new Account("Bogdan"));
-
-
     }
 
     private void dropInitialData() {
