@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BudgetManagerApplication {
+public class PrivateWalletApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BudgetManagerApplication.class, args);
+		SpringApplication.run(PrivateWalletApplication.class, args);
 	}
 
 }
