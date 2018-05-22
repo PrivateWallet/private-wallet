@@ -3,18 +3,18 @@ package com.mp.privatewallet.account.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
-import javax.persistence.GeneratedValue;
-
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
+@Document
 public class Account {
 
-    @GeneratedValue
+    @Id
     public String id;
 
-    @Id
+    @Indexed(unique = true)
     public String ownerName;
 
     public Account(String ownerName) {
