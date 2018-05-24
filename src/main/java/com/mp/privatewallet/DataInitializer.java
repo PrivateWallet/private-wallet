@@ -65,6 +65,7 @@ public class DataInitializer {
         CashFlow outFlowAnnually = new OutFlow(123.4, Periodicity.ANNUALLY);
         CashFlow outFlowOnce = new OutFlow(123.4, Periodicity.ONCE);
         Collection<CashFlow> flows = new ArrayList();
+
         flows.add(inFlowDaily);
         flows.add(inFlowAnnually);
         flows.add(inFlowOnce);
@@ -72,6 +73,6 @@ public class DataInitializer {
         flows.add(outFlowAnnually);
         flows.add(outFlowOnce);
 
-        return new Wallet("Mietek", new BigDecimal(1000000.00), flows);
+        return new Wallet("Mietek", 1000000.00, flows);
     }
 }
