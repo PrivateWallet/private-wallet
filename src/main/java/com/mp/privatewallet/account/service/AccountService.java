@@ -1,6 +1,6 @@
 package com.mp.privatewallet.account.service;
 
-import com.mp.privatewallet.account.entity.Account;
+import com.mp.privatewallet.account.collections.Account;
 import com.mp.privatewallet.account.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
