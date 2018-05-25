@@ -1,10 +1,9 @@
 package com.mp.privatewallet.wallet.collections;
 
-import com.mp.privatewallet.wallet.enums.Direction;
-import com.mp.privatewallet.wallet.enums.Periodicity;
+
+import com.mp.privatewallet.wallet.enums.PeriodicityEnum;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDate;
 
 @Data
@@ -13,17 +12,21 @@ public abstract class CashFlow {
 
     private Double amount;
 
-    private Periodicity periodicity;
+    //This field will allows to find CashFlow By type
+    private PeriodicityEnum periodicity;
 
-    private Direction direction;
-
+    //We should consider to create a separate class for time management
     private LocalDate creationDate;
 
-    public CashFlow(final Double amount, final Periodicity periodicity, final Direction direction) {
+    private LocalDate start;
+
+    private LocalDate end;
+
+    public CashFlow(Double amount, PeriodicityEnum periodicity, LocalDate start, LocalDate end) {
         this.amount = amount;
         this.periodicity = periodicity;
-        this.direction = direction;
         this.creationDate = LocalDate.now();
+        this.start = start;
+        this.end = end;
     }
-
 }
