@@ -8,17 +8,17 @@ import java.util.List;
 @Data
 public class Irregular extends CashFlow implements ImpactStrategy {
 
-    public static PeriodicityEnum periodicity = PeriodicityEnum.IRREGULAR;
+    public final static PeriodicityEnum periodicity = PeriodicityEnum.IRREGULAR;
 
     private final List<LocalDate> executionDays;
 
-    public Irregular(Double amount, LocalDate start, LocalDate end, List<LocalDate> executionDays) {
+    public Irregular(final Double amount, final LocalDate start, final LocalDate end, final List<LocalDate> executionDays) {
         super(amount, periodicity, start, end);
         this.executionDays = executionDays;
     }
 
     @Override
-    public List<LocalDate> getExecutionDays(LocalDate from, LocalDate to) {
+    public List<LocalDate> getExecutionDays(final LocalDate from, final LocalDate to) {
         return  executionDays;
     }
 

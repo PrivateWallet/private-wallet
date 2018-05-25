@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface ImpactStrategy {
 
-    public List<LocalDate> getExecutionDays(LocalDate from, LocalDate to);
+    List<LocalDate> getExecutionDays(final LocalDate from, final LocalDate to);
 }

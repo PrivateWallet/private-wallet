@@ -8,14 +8,14 @@ import java.util.List;
 @Data
 public class Daily extends CashFlow implements ImpactStrategy {
 
-    public static PeriodicityEnum periodicity = PeriodicityEnum.DAILY;
+    public final static PeriodicityEnum periodicity = PeriodicityEnum.DAILY;
 
-    public Daily(Double amount, LocalDate start, LocalDate end) {
+    public Daily(final Double amount, final LocalDate start, final LocalDate end) {
         super(amount, periodicity, start, end);
     }
 
     @Override
-    public List<LocalDate> getExecutionDays(LocalDate from, LocalDate to) {
+    public List<LocalDate> getExecutionDays(final LocalDate from, final LocalDate to) {
         return null;
     }
 }

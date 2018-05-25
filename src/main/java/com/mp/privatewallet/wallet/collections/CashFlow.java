@@ -22,7 +22,7 @@ public abstract class CashFlow {
 
     private LocalDate end;
 
-    public CashFlow(Double amount, PeriodicityEnum periodicity, LocalDate start, LocalDate end) {
+    public CashFlow(final Double amount, final PeriodicityEnum periodicity, final LocalDate start, final LocalDate end) {
         this.amount = amount;
         this.periodicity = periodicity;
         this.creationDate = LocalDate.now();

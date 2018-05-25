@@ -8,24 +8,24 @@ import java.util.List;
 @Data
 public class Monthly extends CashFlow implements ImpactStrategy {
 
-    public static PeriodicityEnum periodicity = PeriodicityEnum.MONTHLY;
+    public final static PeriodicityEnum periodicity = PeriodicityEnum.MONTHLY;
 
     /**
-     *  Default value for execution day is first day of month.
+     *  Default value for the execution day is first day of month.
      */
     private Integer dayOfMonth = 1;
 
-    public Monthly(Double amount, LocalDate start, LocalDate end) {
+    public Monthly(final Double amount, final LocalDate start, final LocalDate end) {
         super(amount, periodicity, start, end);
     }
 
-    public Monthly(Double amount, LocalDate start, LocalDate end, Integer dayOfMonth) {
+    public Monthly(final Double amount, final LocalDate start, final LocalDate end, final Integer dayOfMonth) {
         super(amount, periodicity, start, end);
         this.dayOfMonth = dayOfMonth;
     }
 
     @Override
-    public List<LocalDate> getExecutionDays(LocalDate from, LocalDate to) {
+    public List<LocalDate> getExecutionDays(final LocalDate from, final LocalDate to) {
         return null;
     }
 }
