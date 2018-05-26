@@ -1,6 +1,6 @@
 package com.mp.privatewallet.wallet.enums;
 
-public enum Periodicity {
+public enum PeriodicityEnum {
 
     DAILY,
     WEEKLY,
