@@ -1,5 +1,6 @@
 package com.mp.privatewallet.wallet.collections;
 
+import com.mp.privatewallet.wallet.flows.CashFlow;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
