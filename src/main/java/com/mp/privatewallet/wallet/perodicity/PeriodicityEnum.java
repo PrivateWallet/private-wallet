@@ -1,8 +1,8 @@
-package com.mp.privatewallet.wallet.enums;
+package com.mp.privatewallet.wallet.perodicity;
 
 public enum PeriodicityEnum {
 
-    DAILY(new IrregularComparator()),
+    DAILY(new DailyComparator()),
     WEEKLY(new WeeklyComparator()),
     MONTHLY(new MonthlyComparator()),
     ANNUALLY(new AnnuallyComparator()),
