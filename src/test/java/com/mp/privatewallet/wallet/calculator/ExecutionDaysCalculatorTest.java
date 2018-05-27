@@ -14,8 +14,12 @@ public class ExecutionDaysCalculatorTest {
 
     @Test
     public void listSizeForDailyShouldBeSeven() {
-        ImpactStrategy daily = new Daily(10.0, LocalDate.now(), LocalDate.of(2018, 6, 2));
-        List<LocalDate> listOfDates = ExecutionDaysCalculator.getExecutionDays(daily, LocalDate.now(), LocalDate.now().plusDays(7));
+        //given
+        final ImpactStrategy daily = new Daily(10.0, LocalDate.now(), LocalDate.now().plusYears(1));
+        final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(daily);
+
+        //when
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(LocalDate.now(), LocalDate.now().plusDays(7));
 
         //then
         assertEquals(7, listOfDates.size());
@@ -23,8 +27,12 @@ public class ExecutionDaysCalculatorTest {
 
     @Test
     public void listSizeForMonthlyShouldBeOne() {
-        ImpactStrategy monthly = new Monthly(10.0, LocalDate.now(), LocalDate.of(2018, 6, 2));
-        List<LocalDate> listOfDates = ExecutionDaysCalculator.getExecutionDays(monthly, LocalDate.now(), LocalDate.now().plusMonths(1));
+        //given
+        final ImpactStrategy monthly = new Monthly(10.0, LocalDate.now(), LocalDate.now().plusYears(1));
+        final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(monthly);
+
+        //when
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(LocalDate.now(), LocalDate.now().plusMonths(1));
 
         //then
         assertEquals(1, listOfDates.size());
@@ -32,8 +40,12 @@ public class ExecutionDaysCalculatorTest {
 
     @Test
     public void listSizeForAnnuallyShouldBeOne() {
-        ImpactStrategy annually = new Annually(10.0, LocalDate.now(), LocalDate.of(2018, 6, 2));
-        List<LocalDate> listOfDates = ExecutionDaysCalculator.getExecutionDays(annually, LocalDate.now(), LocalDate.now().plusYears(1));
+        //given
+        final ImpactStrategy annually = new Annually(10.0, LocalDate.now(), LocalDate.now().plusYears(1));
+        final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(annually);
+
+        //when
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(LocalDate.now(), LocalDate.now().plusYears(1));
 
         //then
         assertEquals(1, listOfDates.size());
@@ -41,8 +53,12 @@ public class ExecutionDaysCalculatorTest {
 
     @Test
     public void listSizeForOnceShouldBeOne() {
-        ImpactStrategy monthly = new Once(10.0, LocalDate.now(), LocalDate.of(2018, 6, 2), LocalDate.now());
-        List<LocalDate> listOfDates = ExecutionDaysCalculator.getExecutionDays(monthly, LocalDate.now(), LocalDate.now().plusMonths(1));
+        //given
+        final ImpactStrategy once = new Once(10.0, LocalDate.now(), LocalDate.now().plusYears(1), LocalDate.now());
+        final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(once);
+
+        //when
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(LocalDate.now(), LocalDate.now().plusMonths(1));
 
         //then
         assertEquals(1, listOfDates.size());
@@ -50,13 +66,16 @@ public class ExecutionDaysCalculatorTest {
 
     @Test
     public void listSizeForIrregularShouldBeOne() {
-        List<LocalDate> listOfExecutionDates = new ArrayList();
+        //given
+        final List<LocalDate> listOfExecutionDates = new ArrayList();
         listOfExecutionDates.add(LocalDate.now());
         listOfExecutionDates.add(LocalDate.now().plusDays(1));
         listOfExecutionDates.add(LocalDate.now().plusDays(2));
-        ImpactStrategy monthly = new Irregular(10.0, LocalDate.now(), LocalDate.of(2018, 6, 2), listOfExecutionDates);
+        final ImpactStrategy irregular = new Irregular(10.0, LocalDate.now(), LocalDate.now().plusYears(1), listOfExecutionDates);
+        final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(irregular);
 
-        List<LocalDate> listOfDates = ExecutionDaysCalculator.getExecutionDays(monthly, LocalDate.now(), LocalDate.now().plusMonths(1));
+        //when
+        List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(LocalDate.now(), LocalDate.now().plusMonths(1));
 
         //then
         assertEquals(3, listOfDates.size());
