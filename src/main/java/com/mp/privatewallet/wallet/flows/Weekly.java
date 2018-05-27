@@ -1,10 +1,10 @@
 package com.mp.privatewallet.wallet.flows;
 
-import com.mp.privatewallet.wallet.enums.PeriodicityEnum;
+import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class Weekly extends CashFlow implements ImpactStrategy {
@@ -26,17 +26,11 @@ public class Weekly extends CashFlow implements ImpactStrategy {
         this.dayOfWeek = dayOfWeek;
     }
 
-
     @Override
-    public Integer getComparableIntBasedOnDate(LocalDate localDate) {
-        return localDate.getDayOfWeek().getValue();
-    }
-
-    @Override
-    public List<Integer> getExecutionDays() {
-        List<Integer> executionDayOfWeek = new ArrayList();
-        executionDayOfWeek.add(dayOfWeek);
-        return executionDayOfWeek;
+    public Set getExecutionDays() {
+        final Set setOfExecutionDays = new HashSet();
+        setOfExecutionDays.add(dayOfWeek);
+        return setOfExecutionDays;
     }
 }
 

@@ -1,6 +1,6 @@
 package com.mp.privatewallet.wallet.flows;
 
-import com.mp.privatewallet.wallet.enums.PeriodicityEnum;
+import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
@@ -11,7 +11,6 @@ public abstract class CashFlow {
 
     private Double amount;
 
-    //This field will allows to find CashFlow By type
     private PeriodicityEnum periodicity;
 
     //We should consider to create a separate class for time management
@@ -28,4 +27,5 @@ public abstract class CashFlow {
         this.start = start;
         this.end = end;
     }
+
 }

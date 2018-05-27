@@ -1,10 +1,10 @@
 package com.mp.privatewallet.wallet.flows;
 
-import com.mp.privatewallet.wallet.enums.PeriodicityEnum;
+import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class Annually extends CashFlow implements ImpactStrategy {
@@ -14,27 +14,23 @@ public class Annually extends CashFlow implements ImpactStrategy {
     /**
      *  Default value for execution day is 1 january.
      */
-    private Integer dayOfYear = 1;
+    private LocalDate dayOfYear;
 
     public Annually(final Double amount, final LocalDate start, final LocalDate end) {
         super(amount, periodicity, start, end);
+        dayOfYear = LocalDate.of(LocalDate.now().getYear(), 1, 1);
     }
 
-    public Annually(final Double amount, final LocalDate start, final LocalDate end, final Integer dayOfYear) {
+    public Annually(final Double amount, final LocalDate start, final LocalDate end, final LocalDate dayOfYear) {
         super(amount, periodicity, start, end);
         this.dayOfYear = dayOfYear;
     }
 
     @Override
-    public Integer getComparableIntBasedOnDate(LocalDate localDate) {
-        return localDate.getDayOfYear();
-    }
-
-    @Override
-    public List<Integer> getExecutionDays() {
-        List<Integer> executionDay = new ArrayList();
-        executionDay.add(dayOfYear);
-        return executionDay;
+    public Set getExecutionDays() {
+        Set setOfExecutionDays = new HashSet();
+        setOfExecutionDays.add(dayOfYear.getDayOfYear());
+        return setOfExecutionDays;
     }
 }
 

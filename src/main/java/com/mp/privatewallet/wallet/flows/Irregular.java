@@ -1,10 +1,11 @@
 package com.mp.privatewallet.wallet.flows;
 
-import com.mp.privatewallet.wallet.enums.PeriodicityEnum;
+import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class Irregular extends CashFlow implements ImpactStrategy {
@@ -19,15 +20,11 @@ public class Irregular extends CashFlow implements ImpactStrategy {
     }
 
     @Override
-    public Integer getComparableIntBasedOnDate(LocalDate localDate) {
-        return localDate.getDayOfYear();
+    public Set getExecutionDays() {
+        final Set setOfExecutionDays = new HashSet();
+        executionDates.stream().forEach(date -> setOfExecutionDays.add(date.getDayOfYear()));
+        return setOfExecutionDays;
     }
 
-    @Override
-    public List<Integer> getExecutionDays() {
-        final List<Integer> mapedDatesToDaysOfYear = new ArrayList();
-        executionDates.forEach(date -> mapedDatesToDaysOfYear.add(date.getDayOfYear()));
-        return mapedDatesToDaysOfYear;
-    }
 }
 
