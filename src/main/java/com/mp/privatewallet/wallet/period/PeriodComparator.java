@@ -13,7 +13,7 @@ public class PeriodComparator {
                 cashFlowPeriod.getFrom() : customPeriod.getFrom();
 
         LocalDate updatedTo = (cashFlowPeriod.getTo().compareTo(customPeriod.getTo()) > 0)?
-                cashFlowPeriod.getFrom() : customPeriod.getFrom();
+                customPeriod.getTo() : cashFlowPeriod.getTo();
         return new Period(updatedFrom, updatedTo);
     }
 
