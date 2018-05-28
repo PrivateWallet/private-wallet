@@ -28,7 +28,7 @@ public class Monthly extends CashFlow {
 
     @Override
     public Set getExecutionDays() {
-        Set setOfExecutionDays = new HashSet();
+        final Set setOfExecutionDays = new HashSet();
         setOfExecutionDays.add(dayOfMonth);
         return setOfExecutionDays;
     }

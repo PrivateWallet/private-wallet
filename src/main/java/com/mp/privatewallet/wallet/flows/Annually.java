@@ -29,7 +29,7 @@ public class Annually extends CashFlow {
 
     @Override
     public Set getExecutionDays() {
-        Set setOfExecutionDays = new HashSet();
+        final Set setOfExecutionDays = new HashSet();
         setOfExecutionDays.add(dayOfYear.getDayOfYear());
         return setOfExecutionDays;
     }

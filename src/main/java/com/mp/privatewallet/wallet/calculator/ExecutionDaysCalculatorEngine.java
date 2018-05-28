@@ -43,7 +43,7 @@ public class ExecutionDaysCalculatorEngine implements ExecutionDaysCalculator {
         return executionDays;
     }
 
-    private List<LocalDate> getCalculatedDates(Comparable period) {
+    private List<LocalDate> getCalculatedDates(final Comparable period) {
         final List<LocalDate> calculatedDates = new ArrayList<>();
         final int yearDifference = period.getTo().getYear() - period.getFrom().getYear();
         for (int i = period.getFrom().getDayOfYear(); i < period.getTo().getDayOfYear() + period.getTo().lengthOfYear() * yearDifference; i++) {
