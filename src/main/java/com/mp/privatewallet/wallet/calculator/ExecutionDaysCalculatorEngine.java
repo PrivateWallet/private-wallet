@@ -20,9 +20,20 @@ public class ExecutionDaysCalculatorEngine implements ExecutionDaysCalculator {
 
     }
 
-    public List<LocalDate> getExecutionDays(final Comparable period) {
+    public List<LocalDate> getExecutionDaysForShorterPeriod(final Comparable period) {
         final Comparable updatedPeriod = PeriodComparator.getUpdatedPeriod(cashFlow.getPeriod(), period);
         final List<LocalDate> calculatedDates = getCalculatedDates(updatedPeriod);
+        final List<LocalDate> executionDays = new ArrayList<>();
+        calculatedDates.stream().forEach(calculatedDate -> {
+            if(executionDaysComparator.isDateMatching(cashFlow.getExecutionDays(), calculatedDate)) {
+                executionDays.add(calculatedDate);
+            }
+        });
+        return executionDays;
+    }
+
+    public List<LocalDate> getExecutionDays() {
+        final List<LocalDate> calculatedDates = getCalculatedDates(cashFlow.getPeriod());
         final List<LocalDate> executionDays = new ArrayList<>();
         calculatedDates.stream().forEach(calculatedDate -> {
             if(executionDaysComparator.isDateMatching(cashFlow.getExecutionDays(), calculatedDate)) {

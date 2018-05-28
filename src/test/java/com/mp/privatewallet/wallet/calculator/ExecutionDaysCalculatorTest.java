@@ -22,7 +22,7 @@ public class ExecutionDaysCalculatorTest {
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(daily);
         final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusDays(7));
         //when
-        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(customPeriod);
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
         assertEquals(7, listOfDates.size());
@@ -37,7 +37,7 @@ public class ExecutionDaysCalculatorTest {
         final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
 
         //when
-        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(customPeriod);
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
         assertEquals(1, listOfDates.size());
@@ -52,7 +52,7 @@ public class ExecutionDaysCalculatorTest {
         final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
 
         //when
-        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(customPeriod);
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
         assertEquals(1, listOfDates.size());
@@ -67,7 +67,7 @@ public class ExecutionDaysCalculatorTest {
         final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
 
         //when
-        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(customPeriod);
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
         assertEquals(1, listOfDates.size());
@@ -86,7 +86,7 @@ public class ExecutionDaysCalculatorTest {
         final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
 
         //when
-        List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDays(customPeriod);
+        List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
         assertEquals(3, listOfDates.size());

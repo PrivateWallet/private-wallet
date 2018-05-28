@@ -1,5 +1,6 @@
 package com.mp.privatewallet.wallet.period;
 
+import com.mp.privatewallet.wallet.period.exceptions.PeriodComparatorException;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.Assert.*;
@@ -75,7 +76,7 @@ public class PeriodComparatorTest {
         final Comparable updatedPeriod = PeriodComparator.getUpdatedPeriod(cashFlowPeriod, customPeriod);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = PeriodComparatorException.class)
     public void getUpdatedPeriodTestShouldThrowException2() {
         //given
         final Comparable cashFlowPeriod = new Period(LocalDate.now().plusYears(1), LocalDate.now().plusYears(2));
