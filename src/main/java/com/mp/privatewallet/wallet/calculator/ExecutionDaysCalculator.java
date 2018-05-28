@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ExecutionDaysCalculator {
 
-    List<LocalDate> getExecutionDays(final Comparable period);
+    List<LocalDate> getExecutionDaysForShorterPeriod(final Comparable period);
+    List<LocalDate> getExecutionDays();
+
 
 }

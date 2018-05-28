@@ -1,5 +1,7 @@
 package com.mp.privatewallet.wallet.period;
 
+import com.mp.privatewallet.wallet.period.exceptions.WrongPeriodException;
+
 import java.time.LocalDate;
 
 public class Period implements Comparable {
@@ -9,6 +11,7 @@ public class Period implements Comparable {
     private LocalDate to;
 
     public Period(final LocalDate from, final LocalDate to) {
+        validateDates(from, to);
         this.from = from;
         this.to = to;
     }
@@ -21,5 +24,11 @@ public class Period implements Comparable {
     @Override
     public LocalDate getTo() {
         return to;
+    }
+
+    private void validateDates(final LocalDate from, final LocalDate to) {
+        if(from.compareTo(to) > 0) {
+            throw new WrongPeriodException("'Date from': " + from + " is later than 'date to': " + to);
+        }
     }
 }
