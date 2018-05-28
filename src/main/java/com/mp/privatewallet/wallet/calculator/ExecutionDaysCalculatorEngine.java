@@ -21,16 +21,24 @@ public class ExecutionDaysCalculatorEngine implements ExecutionDaysCalculator {
     }
 
     public List<LocalDate> getExecutionDays(final Comparable period) {
-        Comparable updatedPeriod = PeriodComparator.getUpdatedPeriod(cashFlow.getPeriod(), period);
+        final Comparable updatedPeriod = PeriodComparator.getUpdatedPeriod(cashFlow.getPeriod(), period);
+        final List<LocalDate> calculatedDates = getCalculatedDates(updatedPeriod);
         final List<LocalDate> executionDays = new ArrayList<>();
-        final int yearDifference = updatedPeriod.getTo().getYear() - updatedPeriod.getFrom().getYear();
-        for (int i = updatedPeriod.getFrom().getDayOfYear(); i < updatedPeriod.getTo().getDayOfYear() + updatedPeriod.getTo().lengthOfYear() * yearDifference; i++) {
-            final LocalDate calculatedDate = LocalDate.of(period.getFrom().getYear(), 1, 1).plusDays(i - 1);
+        calculatedDates.stream().forEach(calculatedDate -> {
             if(executionDaysComparator.isDateMatching(cashFlow.getExecutionDays(), calculatedDate)) {
                 executionDays.add(calculatedDate);
             }
-        }
+        });
         return executionDays;
+    }
+
+    private List<LocalDate> getCalculatedDates(Comparable period) {
+        final List<LocalDate> calculatedDates = new ArrayList<>();
+        final int yearDifference = period.getTo().getYear() - period.getFrom().getYear();
+        for (int i = period.getFrom().getDayOfYear(); i < period.getTo().getDayOfYear() + period.getTo().lengthOfYear() * yearDifference; i++) {
+            calculatedDates.add(LocalDate.of(period.getFrom().getYear(), 1, 1).plusDays(i - 1));
+        }
+        return calculatedDates;
     }
 
 }
