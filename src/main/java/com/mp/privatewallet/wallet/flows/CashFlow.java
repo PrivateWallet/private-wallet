@@ -31,4 +31,8 @@ public abstract class CashFlow implements ImpactStrategy {
         return periodicity;
     }
 
+    @Override
+    public Comparable getPeriod() {
+        return period;
+    }
 }
