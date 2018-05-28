@@ -12,7 +12,7 @@ public class Annually extends CashFlow implements ImpactStrategy {
     public final static PeriodicityEnum periodicity = PeriodicityEnum.ANNUALLY;
 
     /**
-     *  Default value for execution day is 1 january.
+     *  Default value for annually execution day is 1st january.
      */
     private LocalDate dayOfYear;
 

@@ -11,7 +11,7 @@ public enum PeriodicityEnum {
 
     private ExecutionDaysComparator executionDaysComparator;
 
-    private PeriodicityEnum(final ExecutionDaysComparator executionDaysComparator) {
+    PeriodicityEnum(final ExecutionDaysComparator executionDaysComparator) {
         this.executionDaysComparator = executionDaysComparator;
     }
 

@@ -7,7 +7,7 @@ public class IrregularComparator implements ExecutionDaysComparator {
 
     @Override
     public boolean isDateMatching(Set executionDays, LocalDate dayToMatch) {
-       return executionDays.contains(dayToMatch.getDayOfYear());
+       return executionDays.contains(dayToMatch);
     }
 
 }

@@ -22,7 +22,7 @@ public class Irregular extends CashFlow implements ImpactStrategy {
     @Override
     public Set getExecutionDays() {
         final Set setOfExecutionDays = new HashSet();
-        executionDates.stream().forEach(date -> setOfExecutionDays.add(date.getDayOfYear()));
+        executionDates.stream().forEach(date -> setOfExecutionDays.add(date));
         return setOfExecutionDays;
     }
 
