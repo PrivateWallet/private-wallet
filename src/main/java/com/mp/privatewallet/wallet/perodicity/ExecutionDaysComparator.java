@@ -5,5 +5,5 @@ import java.util.Set;
 
 public interface ExecutionDaysComparator {
 
-    boolean isDateMatching(Set executionDays, LocalDate dayToMatch);
+    boolean isDateMatching(final Set executionDays, final LocalDate dayToMatch);
 }

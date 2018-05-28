@@ -6,7 +6,7 @@ import java.util.Set;
 public class DailyComparator implements ExecutionDaysComparator {
 
     @Override
-    public boolean isDateMatching(Set executionDays, LocalDate dayToMatch) {
+    public boolean isDateMatching(final Set executionDays, final LocalDate dayToMatch) {
         return true;
     }
 

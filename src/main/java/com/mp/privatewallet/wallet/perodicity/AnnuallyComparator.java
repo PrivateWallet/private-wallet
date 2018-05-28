@@ -6,7 +6,7 @@ import java.util.Set;
 public class AnnuallyComparator implements ExecutionDaysComparator {
 
     @Override
-    public boolean isDateMatching(Set executionDays, LocalDate dayToMatch) {
+    public boolean isDateMatching(final Set executionDays, final LocalDate dayToMatch) {
         return executionDays.contains(dayToMatch.getDayOfYear());
     }
 }

@@ -15,7 +15,7 @@ public abstract class CashFlow implements ImpactStrategy {
     private PeriodicityEnum periodicity;
 
     //We should consider to create a separate class for time management
-    private LocalDate creationDate;
+    private final LocalDate creationDate;
 
     private Comparable period;
 
