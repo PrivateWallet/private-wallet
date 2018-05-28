@@ -1,5 +1,6 @@
 package com.mp.privatewallet.wallet.flows;
 
+import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
@@ -7,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-public class Weekly extends CashFlow implements ImpactStrategy {
+public class Weekly extends CashFlow {
 
     public final static PeriodicityEnum periodicity = PeriodicityEnum.WEEKLY;
 
@@ -16,12 +17,12 @@ public class Weekly extends CashFlow implements ImpactStrategy {
      */
     private Integer dayOfWeek = 1;
 
-    public Weekly(final Double amount, final LocalDate start, final LocalDate end) {
-        super(amount, periodicity, start, end);
+    public Weekly(final Double amount, final Comparable period) {
+        super(amount, periodicity, period);
     }
 
-    public Weekly(final Double amount, final LocalDate start, final LocalDate end, final Integer dayOfWeek) {
-        super(amount, periodicity, start, end);
+    public Weekly(final Double amount, final Comparable period, final Integer dayOfWeek) {
+        super(amount, periodicity, period);
         //TODO: exception when value is x < 1 && x > 7, eg. 'WrongExecutionValueException'
         this.dayOfWeek = dayOfWeek;
     }
@@ -32,5 +33,6 @@ public class Weekly extends CashFlow implements ImpactStrategy {
         setOfExecutionDays.add(dayOfWeek);
         return setOfExecutionDays;
     }
+
 }
 

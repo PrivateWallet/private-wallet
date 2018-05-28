@@ -5,6 +5,8 @@ import com.mp.privatewallet.account.repository.AccountRepository;
 import com.mp.privatewallet.wallet.collections.Wallet;
 import com.mp.privatewallet.wallet.flows.CashFlow;
 import com.mp.privatewallet.wallet.flows.Daily;
+import com.mp.privatewallet.wallet.period.Comparable;
+import com.mp.privatewallet.wallet.period.Period;
 import com.mp.privatewallet.wallet.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -54,8 +56,8 @@ public class DataInitializer {
     }
 
     private Wallet createBugdetForMietek() {
-
-        CashFlow inFlowDaily = new Daily(123.4, LocalDate.now(), LocalDate.now().plusDays(10));
+        Comparable period = new Period(LocalDate.now(), LocalDate.now().plusDays(10));
+        CashFlow inFlowDaily = new Daily(123.4, period);
 //        CashFlow inFlowAnnually = new InFlow(123.4, PeriodicityEnum.ANNUALLY);
 //        CashFlow inFlowOnce = new InFlow(123.4, PeriodicityEnum.ONCE);
 //
