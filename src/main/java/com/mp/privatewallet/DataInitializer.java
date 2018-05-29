@@ -1,13 +1,15 @@
 package com.mp.privatewallet;
 
 import com.mp.privatewallet.account.collections.Account;
-import com.mp.privatewallet.account.repository.AccountRepository;
+import com.mp.privatewallet.account.collections.AccountService;
 import com.mp.privatewallet.wallet.collections.Wallet;
+import com.mp.privatewallet.wallet.collections.WalletService;
 import com.mp.privatewallet.wallet.flows.CashFlow;
 import com.mp.privatewallet.wallet.flows.Daily;
 import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.period.Period;
-import com.mp.privatewallet.wallet.repository.WalletRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.ContextClosedEvent;
@@ -21,38 +23,40 @@ import java.util.Collection;
 @Component
 public class DataInitializer {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private static final Logger LOG = LoggerFactory.getLogger(DataInitializer.class);
 
     @Autowired
-    private WalletRepository walletRepository;
+    private AccountService accountService;
+
+    @Autowired
+    private WalletService walletService;
 
     @EventListener
     public void handleApplicationReadyEvent(ApplicationReadyEvent event) {
         createInitialData();
-        System.out.println("Data Initialized!");
+        LOG.info("Data Initialized!");
     }
 
     @EventListener
     public void handleContextClosedEvent(ContextClosedEvent event) {
         dropInitialData();
-        System.out.println("Data Deleted!");
+        LOG.info("Data Deleted!");
     }
 
     private void createInitialData() {
-        accountRepository.save(new Account("Mietek"));
-        accountRepository.save(new Account("Zdzisiek"));
-        accountRepository.save(new Account("Zenek"));
-        accountRepository.save(new Account("Włodek"));
-        accountRepository.save(new Account("Jerzy"));
-        accountRepository.save(new Account("Bogdan"));
+        accountService.create(new Account("Mietek"));
+        accountService.create(new Account("Zdzisiek"));
+        accountService.create(new Account("Zenek"));
+        accountService.create(new Account("Włodek"));
+        accountService.create(new Account("Jerzy"));
+        accountService.create(new Account("Bogdan"));
 
-        walletRepository.save(createBugdetForMietek());
+        walletService.create(createBugdetForMietek());
     }
 
     private void dropInitialData() {
-        accountRepository.deleteAll();
-        walletRepository.deleteAll();
+        accountService.deleteAll();
+        walletService.deleteAll();
     }
 
     private Wallet createBugdetForMietek() {

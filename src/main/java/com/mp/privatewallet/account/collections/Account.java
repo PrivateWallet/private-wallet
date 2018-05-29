@@ -17,7 +17,7 @@ public class Account {
     @Indexed(unique = true)
     public String ownerName;
 
-    public Account(String ownerName) {
+    public Account(final String ownerName) {
         this.id = id;
         this.ownerName = ownerName;
     }
