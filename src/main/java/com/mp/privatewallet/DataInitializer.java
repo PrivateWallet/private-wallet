@@ -8,6 +8,8 @@ import com.mp.privatewallet.wallet.flows.CashFlow;
 import com.mp.privatewallet.wallet.flows.Daily;
 import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.period.Period;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.ContextClosedEvent;
@@ -21,6 +23,8 @@ import java.util.Collection;
 @Component
 public class DataInitializer {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DataInitializer.class);
+
     @Autowired
     private AccountService accountService;
 
@@ -30,13 +34,13 @@ public class DataInitializer {
     @EventListener
     public void handleApplicationReadyEvent(ApplicationReadyEvent event) {
         createInitialData();
-        System.out.println("Data Initialized!");
+        LOG.info("Data Initialized!");
     }
 
     @EventListener
     public void handleContextClosedEvent(ContextClosedEvent event) {
         dropInitialData();
-        System.out.println("Data Deleted!");
+        LOG.info("Data Deleted!");
     }
 
     private void createInitialData() {
