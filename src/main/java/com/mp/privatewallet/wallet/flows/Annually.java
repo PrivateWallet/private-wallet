@@ -4,7 +4,9 @@ import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -28,8 +30,8 @@ public class Annually extends CashFlow {
     }
 
     @Override
-    public Set getExecutionDays() {
-        final Set setOfExecutionDays = new HashSet();
+    public List getExecutionDays() {
+        final List<Integer> setOfExecutionDays = new ArrayList<>();
         setOfExecutionDays.add(dayOfYear.getDayOfYear());
         return setOfExecutionDays;
     }

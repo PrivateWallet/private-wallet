@@ -3,9 +3,8 @@ package com.mp.privatewallet.wallet.flows;
 import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
-import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
 @Data
 public class Daily extends CashFlow {
@@ -17,8 +16,8 @@ public class Daily extends CashFlow {
     }
 
     @Override
-    public Set getExecutionDays() {
-        return Collections.emptySet();
+    public List getExecutionDays() {
+        return Collections.emptyList();
     }
 
 }
