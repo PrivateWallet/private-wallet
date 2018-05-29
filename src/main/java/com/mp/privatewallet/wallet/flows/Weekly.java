@@ -3,9 +3,8 @@ package com.mp.privatewallet.wallet.flows;
 import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Weekly extends CashFlow {
@@ -28,10 +27,10 @@ public class Weekly extends CashFlow {
     }
 
     @Override
-    public Set getExecutionDays() {
-        final Set setOfExecutionDays = new HashSet();
-        setOfExecutionDays.add(dayOfWeek);
-        return setOfExecutionDays;
+    public List getExecutionDays() {
+        final List<Integer> executionDays = new ArrayList<>();
+        executionDays.add(dayOfWeek);
+        return executionDays;
     }
 
 }

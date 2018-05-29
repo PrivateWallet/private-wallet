@@ -27,7 +27,7 @@ public class Period implements Comparable {
     }
 
     private void validateDates(final LocalDate from, final LocalDate to) {
-        if(from.compareTo(to) > 0) {
+        if(from.isAfter(to)) {
             throw new WrongPeriodException("'Date from': " + from + " is later than 'date to': " + to);
         }
     }

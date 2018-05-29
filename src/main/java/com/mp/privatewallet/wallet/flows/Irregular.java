@@ -4,9 +4,7 @@ import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class Irregular extends CashFlow {
@@ -21,10 +19,8 @@ public class Irregular extends CashFlow {
     }
 
     @Override
-    public Set getExecutionDays() {
-        final Set setOfExecutionDays = new HashSet();
-        executionDates.stream().forEach(date -> setOfExecutionDays.add(date));
-        return setOfExecutionDays;
+    public List getExecutionDays() {
+        return executionDates;
     }
 
 }

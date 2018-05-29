@@ -25,7 +25,7 @@ public class ExecutionDaysCalculatorTest {
         final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
-        assertEquals(7, listOfDates.size());
+        assertEquals(8, listOfDates.size());
     }
 
     @Test
@@ -90,6 +90,22 @@ public class ExecutionDaysCalculatorTest {
 
         //then
         assertEquals(3, listOfDates.size());
+    }
+
+
+    @Test
+    public void listSizeForWeeklyeShouldBeFour() {
+        //given
+        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
+        final ImpactStrategy once = new Weekly(10.0, period, 1);
+        final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(once);
+        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
+
+        //when
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
+
+        //then
+        assertEquals(4, listOfDates.size());
     }
 
 }

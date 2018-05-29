@@ -4,8 +4,8 @@ import com.mp.privatewallet.wallet.period.Comparable;
 import com.mp.privatewallet.wallet.perodicity.PeriodicityEnum;
 import lombok.Data;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Once extends CashFlow {
@@ -20,10 +20,10 @@ public class Once extends CashFlow {
     }
 
     @Override
-    public Set getExecutionDays() {
-        final Set setOfExecutionDays = new HashSet();
-        setOfExecutionDays.add(executionDay);
-        return setOfExecutionDays;
+    public List getExecutionDays() {
+        final List<LocalDate> executionDays = new ArrayList<>();
+        executionDays.add(executionDay);
+        return executionDays;
     }
 
 }
