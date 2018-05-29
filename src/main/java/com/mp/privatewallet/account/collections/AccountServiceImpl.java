@@ -1,6 +1,8 @@
 package com.mp.privatewallet.account.collections;
 
 import com.mp.privatewallet.account.repository.AccountRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,25 +12,27 @@ import java.util.Optional;
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(AccountServiceImpl.class);
+
     @Autowired
     AccountRepository accountRepository;
 
     @Override
     public void create(Account account) {
         Account a = accountRepository.insert(account);
-        System.out.println("Account Created: " + a);
+        LOG.info("Account Created: " + a);
     }
 
     @Override
     public void update(Account account) {
         Account a = accountRepository.save(account);
-        System.out.println("Account Updated: " + a);
+        LOG.info("Account Updated: " + a);
     }
 
     @Override
     public void delete(Account account) {
         accountRepository.delete(account);
-        System.out.println("Account Deleted: " + account.getId());
+        LOG.info("Account Deleted: " + account.getId());
     }
 
     @Override
