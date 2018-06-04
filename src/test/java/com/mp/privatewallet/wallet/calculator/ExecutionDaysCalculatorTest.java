@@ -13,28 +13,32 @@ import java.util.List;
 @SpringBootTest
 public class ExecutionDaysCalculatorTest {
 
+    private final LocalDate firstDayOf2018 = LocalDate.of(2018, 1, 1);
+    private final LocalDate firstDayOf2018PlusOneWeek = firstDayOf2018.plusWeeks(1);
+    private final LocalDate firstDayOf2018PlusOneMonth = firstDayOf2018.plusMonths(1);
+    private final LocalDate firstDayOf2019 = LocalDate.of(2019, 1, 1);
+    private final Comparable period = new Period(firstDayOf2018, firstDayOf2019);
+
 
     @Test
     public void listSizeForDailyShouldBeSeven() {
         //given
-        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
         final ImpactStrategy daily = new Daily(10.0, period);
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(daily);
-        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusDays(7));
+        final Comparable customPeriod = new Period(firstDayOf2018, firstDayOf2018PlusOneWeek);
         //when
         final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
-        assertEquals(8, listOfDates.size());
+        assertEquals(7, listOfDates.size());
     }
 
     @Test
     public void listSizeForMonthlyShouldBeOne() {
         //given
-        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
         final ImpactStrategy monthly = new Monthly(10.0, period);
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(monthly);
-        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
+        final Comparable customPeriod = new Period(firstDayOf2018, firstDayOf2018PlusOneMonth);
 
         //when
         final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
@@ -46,10 +50,9 @@ public class ExecutionDaysCalculatorTest {
     @Test
     public void listSizeForAnnuallyShouldBeOne() {
         //given
-        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
         final ImpactStrategy annually = new Annually(10.0, period);
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(annually);
-        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
+        final Comparable customPeriod = new Period(firstDayOf2018, firstDayOf2019);
 
         //when
         final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
@@ -61,10 +64,9 @@ public class ExecutionDaysCalculatorTest {
     @Test
     public void listSizeForOnceShouldBeOne() {
         //given
-        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
-        final ImpactStrategy once = new Once(10.0, period, LocalDate.now());
+        final ImpactStrategy once = new Once(10.0, period, LocalDate.of(2018, 1, 5));
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(once);
-        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
+        final Comparable customPeriod = new Period(firstDayOf2018, firstDayOf2018PlusOneMonth);
 
         //when
         final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
@@ -76,30 +78,27 @@ public class ExecutionDaysCalculatorTest {
     @Test
     public void listSizeForIrregularShouldBeOne() {
         //given
-        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
-        final List<LocalDate> listOfExecutionDates = new ArrayList();
-        listOfExecutionDates.add(LocalDate.now());
-        listOfExecutionDates.add(LocalDate.now().plusDays(1));
-        listOfExecutionDates.add(LocalDate.now().plusDays(2));
+        final List<LocalDate> listOfExecutionDates = new ArrayList<>();
+        listOfExecutionDates.add(firstDayOf2018);
+        listOfExecutionDates.add(firstDayOf2018.plusDays(1));
+        listOfExecutionDates.add(firstDayOf2018.plusDays(2));
         final ImpactStrategy irregular = new Irregular(10.0, period, listOfExecutionDates);
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(irregular);
-        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
+        final Comparable customPeriod = new Period(firstDayOf2018, firstDayOf2018PlusOneMonth);
 
         //when
-        List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
+        final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);
 
         //then
         assertEquals(3, listOfDates.size());
     }
 
-
     @Test
-    public void listSizeForWeeklyeShouldBeFour() {
+    public void listSizeForWeeklyShouldBeFour() {
         //given
-        final Comparable period = new Period(LocalDate.now(), LocalDate.now().plusYears(1));
         final ImpactStrategy once = new Weekly(10.0, period, 1);
         final ExecutionDaysCalculator executionDaysCalculator = new ExecutionDaysCalculatorEngine(once);
-        final Comparable customPeriod = new Period(LocalDate.now(), LocalDate.now().plusMonths(1));
+        final Comparable customPeriod = new Period(firstDayOf2018, firstDayOf2018PlusOneMonth);
 
         //when
         final List<LocalDate> listOfDates = executionDaysCalculator.getExecutionDaysForShorterPeriod(customPeriod);

@@ -13,7 +13,7 @@ public class DailyComparator implements ExecutionDaysComparator {
         LocalDate dateToCompare = period.getFrom();
 
         while((period.getFrom().isEqual(dateToCompare) || period.getFrom().isBefore(dateToCompare))
-                && (period.getTo().isAfter(dateToCompare) || period.getTo().isEqual(dateToCompare))) {
+                && (period.getTo().isAfter(dateToCompare))) {
             daysList.add(dateToCompare);
             dateToCompare = dateToCompare.plusDays(1);
         }
