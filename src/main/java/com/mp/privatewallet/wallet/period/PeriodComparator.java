@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class PeriodComparator {
 
-    public static Comparable getUpdatedPeriod(final Comparable cashFlowPeriod, final Comparable customPeriod) {
+    public static Comparable getCommonPartOfPeriods(final Comparable cashFlowPeriod, final Comparable customPeriod) {
         validateCommonPartOfPeriods(cashFlowPeriod, customPeriod);
         return createUpdatedPeriod(cashFlowPeriod, customPeriod);
     }
@@ -18,16 +18,16 @@ public class PeriodComparator {
     }
 
     private static boolean havePeriodsCommonPart(final Comparable cashFlowPeriod, final Comparable customPeriod) {
-        return !((customPeriod.getFrom().compareTo(cashFlowPeriod.getTo()) > 0) ||
-                (cashFlowPeriod.getFrom().compareTo(customPeriod.getTo())) > 0);
+        return !(cashFlowPeriod.getTo().isBefore(customPeriod.getFrom()) ||
+                customPeriod.getTo().isBefore(cashFlowPeriod.getFrom()));
     }
 
     private static Comparable createUpdatedPeriod(final Comparable cashFlowPeriod, final Comparable customPeriod) {
-        final LocalDate updatedFrom = (cashFlowPeriod.getFrom().compareTo(customPeriod.getFrom()) > 0)?
+        final LocalDate updatedFrom = cashFlowPeriod.getFrom().isAfter(customPeriod.getFrom())?
                 cashFlowPeriod.getFrom() : customPeriod.getFrom();
 
-        final LocalDate updatedTo = (cashFlowPeriod.getTo().compareTo(customPeriod.getTo()) > 0)?
-                customPeriod.getTo() : cashFlowPeriod.getTo();
+        final LocalDate updatedTo = cashFlowPeriod.getTo().isBefore(customPeriod.getTo())?
+                cashFlowPeriod.getTo() : customPeriod.getTo();
         return new Period(updatedFrom, updatedTo);
     }
 
