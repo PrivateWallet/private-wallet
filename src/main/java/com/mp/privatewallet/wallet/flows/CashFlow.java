@@ -14,7 +14,6 @@ public abstract class CashFlow implements ImpactStrategy {
 
     private PeriodicityEnum periodicity;
 
-    //We should consider to create a separate class for time management
     private final LocalDate creationDate;
 
     private Comparable period;
@@ -34,5 +33,10 @@ public abstract class CashFlow implements ImpactStrategy {
     @Override
     public Comparable getPeriod() {
         return period;
+    }
+
+    @Override
+    public Double getAmount() {
+        return amount;
     }
 }

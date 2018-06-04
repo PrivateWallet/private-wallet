@@ -15,4 +15,6 @@ public interface ImpactStrategy {
 
     Comparable getPeriod();
 
+    Double getAmount();
+
 }
