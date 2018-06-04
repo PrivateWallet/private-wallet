@@ -7,20 +7,23 @@ import java.util.List;
 
 public class AnnuallyComparator implements ExecutionDaysComparator {
 
+    private Integer defaultDayOfYear = 1;
+
     @Override
     public List<LocalDate> getMatchingDays(List executionDays, Comparable period) {
+        Integer dayOfYear = defaultDayOfYear;
         final List<LocalDate> daysList = new ArrayList<>();
         final LocalDate from = period.getFrom();
         final LocalDate to  = period.getTo();
-        Integer dayOfYear = 1;
+
         if(executionDays.get(0) instanceof Integer) {
             dayOfYear = (Integer) executionDays.get(0);
         }
 
-        LocalDate dayToCompare = LocalDate.ofYearDay(period.getFrom().getYear(), dayOfYear);
+        LocalDate dayToCompare = LocalDate.ofYearDay(from.getYear(), dayOfYear);
 
         while(to.isAfter(dayToCompare)) {
-            if(from.isBefore(dayToCompare)) {
+            if(from.isBefore(dayToCompare) || from.isEqual(dayToCompare)) {
                 daysList.add(dayToCompare);
             }
             dayToCompare = dayToCompare.plusYears(1);

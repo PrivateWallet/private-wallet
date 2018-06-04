@@ -24,7 +24,7 @@ public class MonthlyComparator implements ExecutionDaysComparator {
         int monthsToAdd = 1;
 
         while(to.isAfter(dayToCompare)) {
-            if(from.isBefore(dayToCompare)) {
+            if(from.isBefore(dayToCompare) || from.isEqual(dayToCompare)) {
                 daysList.add(dayToCompare);
             }
             dayToCompare = initialDate.plusMonths(monthsToAdd);
