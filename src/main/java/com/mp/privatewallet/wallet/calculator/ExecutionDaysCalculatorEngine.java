@@ -19,7 +19,7 @@ public class ExecutionDaysCalculatorEngine implements ExecutionDaysCalculator {
 
     @Override
     public List<LocalDate> getExecutionDaysForShorterPeriod(Comparable period) {
-        Comparable updatedPeriod = PeriodComparator.getUpdatedPeriod(cashFlow.getPeriod(), period);
+        Comparable updatedPeriod = PeriodComparator.getCommonPartOfPeriods(cashFlow.getPeriod(), period);
         return executionDaysComparator.getMatchingDays(cashFlow.getExecutionDays(), updatedPeriod);
     }
 
