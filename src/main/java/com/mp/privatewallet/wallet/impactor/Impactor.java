@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface Impactor {
 
-//    Map<Double, List<LocalDate>> getWalletImpactList();
+    Map<Double, List<LocalDate>> getWalletImpactList();
 }
